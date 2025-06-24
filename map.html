@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GPS-Punkte – Schlagloch in Fellbach</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([48.808050, 9.275710], 20);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 22,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    var gpsPoints = [
+      [48.808050, 9.275710],
+      [48.808052, 9.275712],
+      [48.808054, 9.275715],
+      [48.808058, 9.275717],
+      [48.808060, 9.275719],
+      [48.808065, 9.275720],
+      [48.808067, 9.275723],
+      [48.808069, 9.275728],
+      [48.808069, 9.275733],
+      [48.808067, 9.275736],
+      [48.808065, 9.275739],
+      [48.808062, 9.275740],
+      [48.808059, 9.275738],
+      [48.808057, 9.275736],
+      [48.808055, 9.275733]
+    ];
+
+    // Punkte als blaue Marker
+    gpsPoints.forEach(function (pt) {
+      L.circleMarker(pt, {
+        radius: 3,
+        color: 'blue',
+        fillColor: '#00f',
+        fillOpacity: 0.8
+      }).addTo(map);
+    });
+
+    // Linie/Polygon verbinden
+    L.polyline(gpsPoints, {color: 'red'}).addTo(map);
+  </script>
+</body>
+</html>
